@@ -1,0 +1,51 @@
+(function execute(inputs, outputs) {
+
+    var text = ((inputs.short_description || "") + " " +
+                (inputs.description || "")).toLowerCase();
+
+    var category = "inquiry";
+    var subcategory = "general";
+
+    // Network / Wi-Fi issues
+    if (text.includes("wifi") ||
+        text.includes("wi-fi") ||
+        text.includes("internet") ||
+        text.includes("network") ||
+        text.includes("connection")) {
+
+        category = "network";
+        subcategory = "wifi";
+
+    // Hardware issues
+    } else if (text.includes("projector") ||
+               text.includes("keyboard") ||
+               text.includes("mouse") ||
+               text.includes("printer") ||
+               text.includes("hardware")) {
+
+        category = "hardware";
+        subcategory = "equipment";
+
+    // Password / Account issues
+    } else if (text.includes("password") ||
+               text.includes("login") ||
+               text.includes("account") ||
+               text.includes("access")) {
+
+        category = "account";
+        subcategory = "password";
+
+    // Computer performance issues
+    } else if (text.includes("slow") ||
+               text.includes("hang") ||
+               text.includes("performance") ||
+               text.includes("computer")) {
+
+        category = "software";
+        subcategory = "performance";
+    }
+
+    outputs.category = category;
+    outputs.subcategory = subcategory;
+
+})(inputs, outputs);
